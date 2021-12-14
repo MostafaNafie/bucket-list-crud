@@ -17,6 +17,7 @@ class BucketListViewController: UITableViewController {
         super.viewDidLoad()
 
         setupTitle()
+        setupBarButtonItem()
     }
 
 }
@@ -24,7 +25,7 @@ class BucketListViewController: UITableViewController {
 // MARK: - TableView Datasource
 extension BucketListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        items.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -39,5 +40,19 @@ extension BucketListViewController {
     private func setupTitle() {
         title = "Bucket List"
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+
+    private func setupBarButtonItem() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(addButtonTapped)
+        )
+    }
+
+    @objc private func addButtonTapped() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: String(describing: AddItemViewController.self))
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
