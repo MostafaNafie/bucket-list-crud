@@ -7,7 +7,15 @@
 
 import UIKit
 
+protocol AddItemViewControllerDelegate {
+    func addItemViewController(_ controller: AddItemViewController,
+                               didFinishAddingItem item: String)
+}
+
 class AddItemViewController: UIViewController {
+
+    // MARK: - Variables
+    var delegate: AddItemViewControllerDelegate?
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -35,6 +43,7 @@ extension AddItemViewController {
     }
 
     @objc private func saveButtonTapped() {
+        delegate?.addItemViewController(self, didFinishAddingItem: "Test")
         navigationController?.popViewController(animated: true)
     }
 }

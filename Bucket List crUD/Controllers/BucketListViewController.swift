@@ -35,6 +35,15 @@ extension BucketListViewController {
     }
 }
 
+// MARK: - AddItemViewController Delegate
+extension BucketListViewController: AddItemViewControllerDelegate {
+    func addItemViewController(_ controller: AddItemViewController, didFinishAddingItem item: String) {
+        items.append(item)
+        let indexPath = IndexPath(row: items.count - 1, section: 0)
+        tableView.insertRows(at: [indexPath], with: .automatic)
+    }
+}
+
 // MARK: - Private Methods
 extension BucketListViewController {
     private func setupTitle() {
@@ -52,7 +61,8 @@ extension BucketListViewController {
 
     @objc private func addButtonTapped() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: String(describing: AddItemViewController.self))
+        let viewController = storyboard.instantiateViewController(withIdentifier: String(describing: AddItemViewController.self)) as! AddItemViewController
+        viewController.delegate = self
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
