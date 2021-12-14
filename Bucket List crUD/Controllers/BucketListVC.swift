@@ -10,7 +10,7 @@ import UIKit
 class BucketListVC: UITableViewController {
 
     // MARK: - Variables
-    private var items = ["Sky diving", "Live in Hawaii"]
+    private var items = ["Live in Mecca", "Go to Cairo"]
 
     // MARK: - View Lifecycle
     override func viewDidLoad() {
