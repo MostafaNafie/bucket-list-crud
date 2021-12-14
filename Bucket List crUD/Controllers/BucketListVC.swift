@@ -29,8 +29,7 @@ extension BucketListVC {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell",
-                                                 for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
         cell.textLabel?.text = items[indexPath.row]
         return cell
     }
@@ -43,9 +42,16 @@ extension BucketListVC {
         let item = items[row]
         editButtonTapped(at: row, with: item)
     }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            items.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
 }
 
-// MARK: - AddItemViewController Delegate
+// MARK: - ItemViewController Delegate
 extension BucketListVC: ItemViewControllerDelegate {
     func itemViewController(_ controller: ItemVC, didFinishAddingItem item: String) {
         items.append(item)
