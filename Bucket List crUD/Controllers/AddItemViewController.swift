@@ -14,6 +14,9 @@ protocol AddItemViewControllerDelegate {
 
 class AddItemViewController: UIViewController {
 
+    // MARK: - Outlets
+    @IBOutlet weak var textField: UITextField!
+
     // MARK: - Variables
     var delegate: AddItemViewControllerDelegate?
     
@@ -43,7 +46,9 @@ extension AddItemViewController {
     }
 
     @objc private func saveButtonTapped() {
-        delegate?.addItemViewController(self, didFinishAddingItem: "Test")
+        if let item = textField.text, !item.isEmpty {
+            delegate?.addItemViewController(self, didFinishAddingItem: item)
+        }
         navigationController?.popViewController(animated: true)
     }
 }
