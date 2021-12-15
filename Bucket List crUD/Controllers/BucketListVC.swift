@@ -83,18 +83,18 @@ extension BucketListVC {
     }
 
     @objc private func addButtonTapped() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: String(describing: ItemVC.self)) as! ItemVC
+        let identifier = String(describing: ItemVC.self)
+        let viewController = storyboard?.instantiateViewController(withIdentifier: identifier) as! ItemVC
         viewController.mode = .add
         viewController.delegate = self
         navigationController?.pushViewController(viewController, animated: true)
     }
 
     private func editButtonTapped(at row: Int, with item: String) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: String(describing: ItemVC.self)) as! ItemVC
-        viewController.delegate = self
+        let identifier = String(describing: ItemVC.self)
+        let viewController = storyboard?.instantiateViewController(withIdentifier: identifier) as! ItemVC
         viewController.mode = .edit(row, item)
+        viewController.delegate = self
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
