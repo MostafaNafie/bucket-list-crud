@@ -22,7 +22,7 @@ class BucketListVC: UITableViewController {
 
 }
 
-// MARK: - TableView DataSource
+// MARK: - UITableView DataSource
 extension BucketListVC {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         items.count
@@ -35,7 +35,7 @@ extension BucketListVC {
     }
 }
 
-// MARK: - UITableViewDelegate
+// MARK: - UITableView Delegate
 extension BucketListVC {
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         let row = indexPath.row
